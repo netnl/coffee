@@ -1,0 +1,207 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* ── Marker ─────────────────────────────────────────────────────────────────── */
+
+.coffee-marker {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+}
+
+.coffee-marker svg {
+  display: block;
+  overflow: visible;
+  transform-origin: 50% 100%;
+  transition: filter 0.18s ease, transform 0.18s ease;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.38));
+}
+
+.coffee-marker:hover svg,
+.coffee-marker:focus svg {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.55));
+  transform: scale(1.22);
+}
+
+/* ── Popup ──────────────────────────────────────────────────────────────────── */
+
+/* Drop-shadow traces the full cup silhouette (body + handle) */
+.leaflet-popup {
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.26));
+}
+
+/* D-shaped handle emerging from the right side of the cup */
+.leaflet-popup::after {
+  content: '';
+  position: absolute;
+  right: -22px;
+  top: 26%;
+  width: 22px;
+  height: 38%;
+  border: 6px solid #fff;
+  border-left: none;
+  border-radius: 0 50% 50% 0;
+  background: transparent;
+}
+
+/* Hide Leaflet's default tip arrow — the cup base is the visual anchor */
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+/* Cup body: full width at top (rim), tapered at bottom (base), rounded base corners */
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  box-shadow: none;
+  clip-path: polygon(
+    0%   0%,
+    100% 0%,
+    100% 87%,
+    98%  94%,
+    96%  100%,
+    4%   100%,
+    2%   94%,
+    0%   87%
+  );
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  min-width: 250px;
+}
+
+.coffee-popup {
+  font-size: 0.85rem;
+  color: #1a1a1a;
+}
+
+/* Brown header — echoes the circle badge on the markers */
+.coffee-popup__title {
+  margin: 0;
+  padding: 11px 16px 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: #6F4E37;
+  color: #fff;
+}
+
+.coffee-popup__ratings {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 6px 14px;
+  display: table;
+}
+
+.coffee-popup__ratings td,
+.coffee-popup__ratings th {
+  padding: 3px 8px;
+  text-align: center;
+}
+
+.coffee-popup__ratings th {
+  padding-top: 10px;
+  font-weight: 600;
+  color: #888;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.coffee-popup__ratings td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #666;
+  padding-left: 14px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.coffee-popup__ratings td:last-child {
+  padding-right: 14px;
+}
+
+.rating-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.rating-chip--empty {
+  background: #e2e8f0;
+  color: #999;
+}
+
+.coffee-popup__note {
+  margin: 0;
+  padding: 7px 16px 8px;
+  font-size: 0.78rem;
+  color: #777;
+  font-style: italic;
+  background: #faf9f7;
+  border-top: 1px solid #ede9e4;
+}
+
+.coffee-popup__link,
+.leaflet-popup-content .coffee-popup__link {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  padding: 8px 14px 10px;
+  background: #ede9e4;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+
+.coffee-popup__link:hover,
+.coffee-popup__link:focus,
+.leaflet-popup-content .coffee-popup__link:hover,
+.leaflet-popup-content .coffee-popup__link:focus {
+  background: #ddd7d0;
+  color: #444;
+  outline: none;
+}
+
+/* Close button — white circle, white × */
+.leaflet-popup-close-button {
+  top: 8px !important;
+  right: 8px !important;
+  width: 22px !important;
+  height: 22px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #6F4E37 !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
