@@ -1,6 +1,6 @@
 'use strict';
 
-const STATIC_CACHE = 'coffee-static-v5';
+const STATIC_CACHE = 'coffee-static-v6';
 const TILE_CACHE   = 'coffee-tiles-v1';
 const MAX_TILES    = 300;
 
@@ -12,6 +12,7 @@ const CORE_URLS = [
   './app.js',
   './data.csv',
   './favicon.svg',
+  './icon.svg',
   './manifest.json',
 ];
 

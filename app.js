@@ -168,6 +168,12 @@ function buildPopup(row) {
     link.textContent = 'Open in Google Maps';
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
+    // window.location.href triggers universal links (iOS) and app links (Android)
+    // more reliably than a plain <a> click inside a PWA webview.
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      window.location.href = mapsUrl;
+    });
     wrap.appendChild(link);
   }
 
